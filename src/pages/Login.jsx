@@ -1,20 +1,41 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../firebase/firebase.config";
+import { useEffect } from "react";
+import GoogleLogin from "../component/auth/GoogleLogin";
+import FacebookLogin from "../component/auth/FacebookLogin";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+  const [userInfo] = useAuthState(auth);
+  const navigate = useNavigate();
+  const { signIn, error } = useAuth();
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password);
+  };
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]);
+
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className=" lg:flex-row-reverse">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+            <h1 className="text-5xl text-center mb-10 font-bold">Login now!</h1>
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body">
+            <form onSubmit={handleSignIn} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -38,11 +59,11 @@ const Login = () => {
                   className="input input-bordered"
                   required
                 />
-                {/* {error && (
+                {error && (
                   <p className="text-red-500 text-center mt-3">
                     {error.message?.slice(10)}
                   </p>
-                )} */}
+                )}
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
@@ -62,8 +83,9 @@ const Login = () => {
             </form>
 
             <div className="w-full ">
-              <div className="flex flex-col justify-center gap-2 mx-7 mb-7">
-                {/* <GoogleLogin /> */}
+              <div className="flex justify-center gap-3 mx-7 mb-7">
+                <GoogleLogin />
+                <FacebookLogin />
               </div>
             </div>
           </div>
