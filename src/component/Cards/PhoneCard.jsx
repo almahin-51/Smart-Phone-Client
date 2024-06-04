@@ -5,15 +5,17 @@ const PhoneCard = ({ phone }) => {
   const { _id, imageURL, title, offer, ratingRate, rating, price } = phone;
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
-      <figure className="h-3/5">
-        <img src={imageURL} className="h-full w-full" alt="Books" />
-      </figure>
-      <div className="card-body">
-        <div className="card-title">
-          {title}
-          <span className="badge badge-secondary">{offer}</span>
+    <div className="card rounded-none w-96 bg-base-100 shadow-xl">
+      <figure className="h-3/5 relative">
+        <img src={imageURL} className="h-full w-full" alt="phones" />
+        <div className="w-12 text-sm h-12 bg-black text-white flex justify-center items-center rounded-full absolute top-4 right-4">
+          <p className="text-center leading-4 capitalize font-semibold">
+            {offer}
+          </p>
         </div>
+      </figure>
+      <div className="card-body flex flex-col items-center">
+        <h1 className="card-title">{title}</h1>
         <p>{ratingRate}</p>
         <p>{rating}</p>
         <div>
@@ -29,10 +31,6 @@ const PhoneCard = ({ phone }) => {
           >
             Details
           </Link>
-          <div>
-            <div className="badge badge-outline mr-2">Country</div>
-            <div className="badge badge-outline text-red-600">year</div>
-          </div>
         </div>
       </div>
     </div>

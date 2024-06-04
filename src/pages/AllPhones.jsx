@@ -6,7 +6,7 @@ const AllPhones = () => {
 
   useEffect(() => {
     async function load() {
-      const res = await fetch("http://localhost:4000/books");
+      const res = await fetch("http://localhost:3000/phones");
       const phoneData = await res.json();
       setPhones(phoneData);
     }
@@ -22,7 +22,7 @@ const AllPhones = () => {
       </div>
       <div className="flex justify-center flex-wrap gap-10">
         {phones?.map((phone) => (
-          <PhoneCard key={phone._id} book={phone} />
+          <PhoneCard key={phone._id} phone={phone} />
         ))}
       </div>
     </div>

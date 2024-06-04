@@ -14,40 +14,6 @@
   background-position: center center;
 }
 
-.status_one {
-  background-image: url(./assets/pic/s1.jpg);
-  object-fit: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  overflow: hidden;
-  background-size: cover;
-}
-.status_two {
-  background-image: url(./assets/pic/s2.jpg);
-  object-fit: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  overflow: hidden;
-  background-size: cover;
-}
-.status_three {
-  background-image: url(./assets/pic/s3.jpg);
-  object-fit: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  overflow: hidden;
-  background-size: contain;
-}
-
-.bookCategory {
-  background-image: url(./assets/pic/bgparallax-04.jpg);
-  object-fit: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  overflow: hidden;
-  background-size: cover;
-}
-
 .offer {
   background-image: url(./assets/pic/img-5_8dbc9088-a43a-4e32-b664-1a3681550de4.jpg);
   object-fit: cover;

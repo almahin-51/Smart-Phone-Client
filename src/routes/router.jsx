@@ -9,6 +9,9 @@ import AllPhones from "../pages/AllPhones";
 import DashboardHome from "../component/Dashboad/DashboardHome";
 import DashboardLayout from "../layout/DashboardLayout";
 import PrivateRoute from "./PrivateRouter";
+import ManageAllProduct from "../component/Dashboad/ManageAllProduct";
+import EditPhone from "../component/Dashboad/EditPhone";
+import AddPhone from "../component/Dashboad/AddPhone";
 
 export const router = createBrowserRouter([
   {
@@ -52,8 +55,16 @@ export const router = createBrowserRouter([
         element: <DashboardHome />,
       },
       {
-        path: "manage-all",
-        element: <>this is manage all</>,
+        path: "manage-phone",
+        element: <ManageAllProduct />,
+      },
+      {
+        path: "edit-phone/:id",
+        element: <EditPhone />,
+      },
+      {
+        path: "add-phone",
+        element: <AddPhone />,
       },
     ],
   },

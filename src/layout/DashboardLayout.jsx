@@ -50,10 +50,10 @@ const DashboardLayout = () => {
               <Link to={"/dashboard"}>Profile</Link>
             </li>
             <li className="border border-[#9a9a9a]">
-              <Link to={"/dashboard/manage-books"}>Manage All Books</Link>
+              <Link to={"/dashboard/manage-phone"}>Manage All Phone</Link>
             </li>
             <li className="border border-[#9a9a9a]">
-              <Link to={"/dashboard/add-book"}>Add Books</Link>
+              <Link to={"/dashboard/add-phone"}>Add Phone</Link>
             </li>
           </div>
           <div className="flex gap-4 justify-center">
