@@ -45,7 +45,7 @@ const AddPhone = () => {
     };
 
     const dataPost = await axios.post(
-      "http://localhost:3000/phones",
+      "https://smart-phone-server.onrender.com/phones",
       phoneData
     );
     if (dataPost.status === 200) {

@@ -38,7 +38,7 @@ const Register = () => {
               name: displayName,
               email: data?.user?.email,
             };
-            fetch("http://localhost:3000/user", {
+            fetch("https://smart-phone-server.onrender.com/user", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

@@ -6,7 +6,7 @@ const AllPhones = () => {
 
   useEffect(() => {
     async function load() {
-      const res = await fetch("http://localhost:3000/phones");
+      const res = await fetch("https://smart-phone-server.onrender.com/phones");
       const phoneData = await res.json();
       setPhones(phoneData);
     }

@@ -11,7 +11,9 @@ const EditPhone = () => {
 
   useEffect(() => {
     async function load() {
-      const data = await axios.get(`http://localhost:3000/phones/${id}`);
+      const data = await axios.get(
+        `https://smart-phone-server.onrender.com/phones/${id}`
+      );
       if (data.status === 200) {
         setPhone(data.data);
       }
@@ -58,14 +60,17 @@ const EditPhone = () => {
       description,
     };
 
-    const updated = await fetch(`http://localhost:3000/phones/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(phoneData),
-    });
+    const updated = await fetch(
+      `https://smart-phone-server.onrender.com/phones/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(phoneData),
+      }
+    );
     if (updated.status === 200) {
       // navigate("/dashboard/manage-phones");
       console.log("successfully updated");

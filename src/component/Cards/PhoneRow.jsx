@@ -13,7 +13,7 @@ const PhoneRow = ({ phone }) => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:3000/phones/${phone?._id}`, {
+        fetch(`https://smart-phone-server.onrender.com/phones/${phone?._id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

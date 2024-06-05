@@ -9,7 +9,9 @@ const Details = () => {
 
   useEffect(() => {
     async function load() {
-      const data = await axios.get(`http://localhost:3000/phones/${id}`);
+      const data = await axios.get(
+        `https://smart-phone-server.onrender.com/phones/${id}`
+      );
       if (data.status === 200) {
         setPhone(data.data);
       }

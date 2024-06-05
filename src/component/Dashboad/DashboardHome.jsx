@@ -9,13 +9,14 @@ const DashboardHome = () => {
   const [userData, setUserData] = useState();
   useEffect(() => {
     async function load() {
-      const res = await fetch(`http://localhost:3000/user/${user?.email}`);
+      const res = await fetch(
+        `https://smart-phone-server.onrender.com/user/${user?.email}`
+      );
       const userData = await res.json();
       setUserData(userData);
     }
     load();
   }, []);
-  console.log(userData);
   return (
     <div className="border w-80 rounded-sm p-4 text-center shadow-xl ">
       <h4 className="font-bold text-3xl text-center my-3 text-[#ff0000]">

@@ -7,7 +7,9 @@ const ManageAllProduct = () => {
 
   useEffect(() => {
     async function load() {
-      const data = await axios.get("http://localhost:3000/phones");
+      const data = await axios.get(
+        "https://smart-phone-server.onrender.com/phones"
+      );
 
       if (data?.status === 200) {
         setPhones(data?.data);

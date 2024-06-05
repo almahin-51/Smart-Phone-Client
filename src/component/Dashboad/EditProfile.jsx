@@ -14,7 +14,9 @@ const EditProfile = () => {
 
   useEffect(() => {
     async function load() {
-      const data = await axios.get(`http://localhost:3000/user/get/${id}`);
+      const data = await axios.get(
+        `https://smart-phone-server.onrender.com/user/get/${id}`
+      );
       if (data.status === 200) {
         setUser(data.data);
       }
@@ -60,13 +62,16 @@ const EditProfile = () => {
     //firebase user update
     updateProfile({ displayName, photoURL });
 
-    const updated = fetch(`http://localhost:3000/user/${user?.email}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    });
+    const updated = fetch(
+      `https://smart-phone-server.onrender.com/user/${user?.email}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      }
+    );
     if (updated) {
       navigate("/dashboard");
       console.log("successfully updated");

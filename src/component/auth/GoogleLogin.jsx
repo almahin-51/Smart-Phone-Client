@@ -4,9 +4,7 @@ import useAuth from "../../hooks/useAuth";
 const GoogleLogin = () => {
   const { googleLogin } = useAuth();
   const handleLogin = () => {
-    googleLogin().then((data) => {
-      console.log(data);
-    });
+    googleLogin().then(() => {});
   };
 
   return (

@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
           name: data?.user?.displayName,
           photoURL: data?.user?.photoURL,
         };
-        fetch("http://localhost:3000/user", {
+        fetch("https://smart-phone-server.onrender.com/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
