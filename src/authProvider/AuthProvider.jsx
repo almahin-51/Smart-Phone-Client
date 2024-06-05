@@ -23,8 +23,8 @@ const AuthProvider = ({ children }) => {
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password)
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        // console.log(data);
       })
       .catch((error) => {
         setError(error.message);
