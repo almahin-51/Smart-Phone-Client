@@ -13,6 +13,7 @@ import ManageAllProduct from "../component/Dashboad/ManageAllProduct";
 import EditPhone from "../component/Dashboad/EditPhone";
 import AddPhone from "../component/Dashboad/AddPhone";
 import EditProfile from "../component/Dashboad/EditProfile";
+import Details from "../component/Cards/Details";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "/all-phones",
         element: <AllPhones />,
+      },
+      {
+        path: "/details/:id",
+        element: <Details />,
       },
     ],
   },

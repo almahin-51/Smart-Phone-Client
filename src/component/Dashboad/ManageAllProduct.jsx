@@ -14,7 +14,7 @@ const ManageAllProduct = () => {
       }
     }
     load();
-  }, []);
+  }, [phones, setPhones]);
 
   return (
     <div className="overflow-x-auto w-full px-16 mt-10">

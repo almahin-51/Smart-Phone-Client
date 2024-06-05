@@ -32,6 +32,7 @@ const AddPhone = () => {
     const imageURL = form.imageURL.value;
     const ratingRate = form.ratingRate.value;
     const rating = form.rating.value;
+    const description = form.description.value;
 
     const phoneData = {
       imageURL,
@@ -40,6 +41,7 @@ const AddPhone = () => {
       ratingRate,
       rating,
       price,
+      description,
     };
 
     const dataPost = await axios.post(
@@ -57,11 +59,20 @@ const AddPhone = () => {
       <h1 className="text-4xl my-6 mt-10 font-bold ">Add Book</h1>
       <form onSubmit={handleAdd} className="w-full">
         <div className="mb-4">
-          <label htmlFor="">Title </label>
+          <label htmlFor="">Title</label>
           <input
             required
             type="text"
             name="title"
+            className="w-full py-3 px-5 border"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="">Offer</label>
+          <input
+            required
+            type="text"
+            name="offer"
             className="w-full py-3 px-5 border"
           />
         </div>
@@ -102,11 +113,11 @@ const AddPhone = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="">Offer</label>
-          <input
+          <label htmlFor="">Description</label>
+          <textarea
             required
             type="text"
-            name="offer"
+            name="description"
             className="w-full py-3 px-5 border"
           />
         </div>

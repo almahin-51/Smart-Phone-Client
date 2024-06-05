@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
-import axios from "axios";
 
 /* eslint-disable react/prop-types */
 const PhoneRow = ({ phone }) => {
+  const token = localStorage.getItem("token");
   const handleDelete = () => {
     swal({
       title: "Are you sure?",
@@ -13,8 +13,13 @@ const PhoneRow = ({ phone }) => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        axios
-          .delete(`http://localhost:4000/phones/${phone?._id}`)
+        fetch(`http://localhost:3000/phones/${phone?._id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        })
           // eslint-disable-next-line no-unused-vars
           .then(() => {
             swal({

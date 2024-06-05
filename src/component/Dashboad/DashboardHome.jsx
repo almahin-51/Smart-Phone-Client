@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,11 +8,14 @@ const DashboardHome = () => {
   const { user } = useAuth();
   const [userData, setUserData] = useState();
   useEffect(() => {
-    fetch(`http://localhost:3000/user/${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setUserData(data));
+    async function load() {
+      const res = await fetch(`http://localhost:3000/user/${user?.email}`);
+      const userData = await res.json();
+      setUserData(userData);
+    }
+    load();
   }, []);
-
+  console.log(userData);
   return (
     <div className="border w-80 rounded-sm p-4 text-center shadow-xl ">
       <h4 className="font-bold text-3xl text-center my-3 text-[#ff0000]">
@@ -20,7 +23,7 @@ const DashboardHome = () => {
       </h4>
       <div className="my-3 mx-auto w-20 h-20 rounded-full overflow-hidden">
         {userData?.photoURL ? (
-          <img className="w-full h-full" src={userData?.photoURL} alt="" />
+          <img className="w-auto h-full" src={userData?.photoURL} alt="" />
         ) : (
           <div
             style={{ width: "80px", height: "80px", fontSize: "40px" }}

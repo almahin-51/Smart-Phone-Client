@@ -7,6 +7,7 @@ const EditPhone = () => {
   const { id } = useParams();
 
   const [phone, setPhone] = useState();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     async function load() {
@@ -16,6 +17,7 @@ const EditPhone = () => {
       }
     }
     load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phone]);
 
   const handleUpdate = async (e) => {
@@ -56,10 +58,14 @@ const EditPhone = () => {
       description,
     };
 
-    const updated = await axios.patch(
-      `http://localhost:3000/phones/${id}`,
-      phoneData
-    );
+    const updated = await fetch(`http://localhost:3000/phones/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(phoneData),
+    });
     if (updated.status === 200) {
       // navigate("/dashboard/manage-phones");
       console.log("successfully updated");

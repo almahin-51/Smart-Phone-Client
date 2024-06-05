@@ -113,7 +113,7 @@ const Navbar = () => {
           )}
 
           <div onClick={handleToggle} className="avatar placeholder">
-            <div className="bg-neutral text-neutral-content rounded-full w-11">
+            <div className="bg-neutral text-neutral-content rounded-full w-16">
               {user?.photoURL ? (
                 <img src={user?.photoURL} alt="User pic" />
               ) : (
