@@ -1,19 +1,24 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
-import auth from "../firebase/firebase.config";
 import GoogleLogin from "../component/auth/GoogleLogin";
 import FacebookLogin from "../component/auth/FacebookLogin";
-import useAuth from "../hooks/useAuth";
+import {
+  useAuthState,
+  useCreateUserWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
+import auth from "../firebase/firebase.config";
 
 const Register = () => {
-  const { createUser, error } = useAuth();
-
   const [userInfo] = useAuthState(auth);
+
   const navigate = useNavigate();
   const [passMatch, setPassMatch] = useState(true);
 
-  const handleSubmit = (e) => {
+  const [createUserWithEmailAndPassword, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const displayName = form.name.value;
@@ -26,22 +31,25 @@ const Register = () => {
     }
     if (password === confirm_password) {
       setPassMatch(true);
-      createUser(email, password).then((data) => {
-        if (data?.user?.email) {
-          const userInfo = {
-            name: displayName,
-            email: data?.user?.email,
-            photo: data?.user?.photoURL,
-          };
-          fetch("http://localhost:4000/user", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userInfo),
-          }).then((res) => res.json());
-        }
-      });
+      await createUserWithEmailAndPassword(email, password)
+        .then((data) => {
+          if (data?.user?.email) {
+            const userInfo = {
+              name: displayName,
+              email: data?.user?.email,
+            };
+            fetch("http://localhost:3000/user", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(userInfo),
+            }).then((res) => res.json());
+          }
+        })
+        .catch(() => {
+          // setError(error.message);
+        });
     }
   };
 

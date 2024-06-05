@@ -23,15 +23,6 @@ const AuthProvider = ({ children }) => {
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password)
-      .then((data) => console.log(data))
-      .catch((error) => {
-        setError(error.message);
-      });
-  };
-
-  const signIn = (email, password) => {
-    setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password)
       .then((data) => {
         console.log(data);
       })
@@ -39,12 +30,39 @@ const AuthProvider = ({ children }) => {
         setError(error.message);
       });
   };
+
   const logout = () => {
     return signOut(auth).then(() => setUser(null));
   };
+  const signIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const googleLogin = () => {
-    return signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider).then((data) => {
+      if (data?.user?.email) {
+        const userInfo = {
+          email: data?.user?.email,
+          name: data?.user?.displayName,
+          photoURL: data?.user?.photoURL,
+        };
+        fetch("http://localhost:3000/user", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+      }
+    });
   };
   const facebookLogin = () => {
     return signInWithPopup(auth, facebookProvider);
@@ -62,17 +80,17 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unsubscribe();
     };
-  }, []);
+  }, [user, setUser]);
 
   const authInfo = {
     user,
     googleLogin,
     facebookLogin,
     createUser,
-    signIn,
     logout,
     loading,
     error,
+    signIn,
   };
 
   return (

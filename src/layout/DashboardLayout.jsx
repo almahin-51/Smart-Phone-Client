@@ -3,7 +3,7 @@ import swal from "sweetalert";
 import useAuth from "../hooks/useAuth";
 
 const DashboardLayout = () => {
-  const { signOut } = useAuth();
+  const { logout } = useAuth();
 
   const handleLogout = () => {
     swal({
@@ -17,7 +17,7 @@ const DashboardLayout = () => {
         swal("Successfully logout!", {
           icon: "success",
         });
-        signOut();
+        logout();
       }
     });
   };

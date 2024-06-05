@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRouter";
 import ManageAllProduct from "../component/Dashboad/ManageAllProduct";
 import EditPhone from "../component/Dashboad/EditPhone";
 import AddPhone from "../component/Dashboad/AddPhone";
+import EditProfile from "../component/Dashboad/EditProfile";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: "add-phone",
         element: <AddPhone />,
+      },
+      {
+        path: "edit-profile/:id",
+        element: <EditProfile />,
       },
     ],
   },
